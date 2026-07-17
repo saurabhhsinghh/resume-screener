@@ -12,10 +12,13 @@ import streamlit as st
 # Streamlit Cloud secrets (set in "Advanced settings") are only exposed via
 # st.secrets, not as real environment variables. config.py reads with
 # os.getenv(), so bridge them here BEFORE importing anything that pulls in
-# config.py. Locally (running via `.env` + python-dotenv) st.secrets will
-# just be empty and this loop does nothing.
-for key, value in st.secrets.items():
-    os.environ.setdefault(key, str(value))
+# config.py. Locally (running via `.env` + python-dotenv) there's no
+# secrets.toml at all, which raises rather than returning empty -- guard it.
+try:
+    for key, value in st.secrets.items():
+        os.environ.setdefault(key, str(value))
+except Exception:
+    pass  # no secrets.toml (e.g. running locally with .env) -- fine
 
 from extraction import ExtractionError, extract_job_description, parse_resume, score_candidate
 from file_readers import UnreadableFileError, read_resume
