@@ -90,6 +90,14 @@ if submitted:
             st.markdown("**Verdict**")
             st.info(result.details.verdict or "No verdict provided.")
 
+            with st.expander("🔍 Debug: view raw extracted data"):
+                st.markdown("**Parsed job description**")
+                st.json(job.model_dump())
+                st.markdown("**Parsed resume**")
+                st.json(resume.model_dump())
+                st.markdown("**Raw match result**")
+                st.json(result.model_dump())
+
         except UnreadableFileError as exc:
             st.error(f"Couldn't read that resume: {exc}")
         except ExtractionError as exc:
