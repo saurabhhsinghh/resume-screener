@@ -51,9 +51,24 @@ cp .env.example .env   # then add your GROQ_API_KEY
 
 ## Usage
 
+### CLI (batch mode)
+
 ```bash
 python main.py --resumes ./resumes --job-description ./job_description.txt --top 2
 ```
+
+### Web app
+
+A single-resume, interactive version is also available via Streamlit — paste a
+job description, upload one resume, get an instant score.
+
+```bash
+streamlit run app.py
+```
+
+`app.py` is a thin UI layer only — it calls the exact same `extraction.py` /
+`file_readers.py` functions as the CLI, so there's no duplicated logic between
+the two interfaces.
 
 ## Design notes
 
