@@ -1,0 +1,28 @@
+Description
+Do you want to solve real customer problems through innovative technology? Do you enjoy working on scalable services in a collaborative team environment? Do you want to see your code directly impact millions of customers worldwide?
+
+At Amazon, we hire the best minds in technology to innovate and build on behalf of our customers. Customer obsession is part of our company DNA, which has made us one of the world's most beloved brands.
+
+Our Software Development Engineers (SDEs) use modern technology to solve complex problems while seeing their work's impact first-hand. The challenges SDEs solve at Amazon are meaningful and influence millions of customers, sellers, and products globally.
+
+Key job responsibilities
+- Collaborate with cross-disciplinary teams to design, build, and operate innovative products and services.
+- Design and develop scalable solutions using cloud-native architectures and microservices.
+- Participate in code reviews and contribute to technical documentation.
+- Build and maintain resilient distributed systems that are scalable, fault-tolerant, and cost-effective.
+- Leverage GenAI and AI-powered tools to enhance development productivity.
+- Write clean, maintainable code following best practices and design patterns.
+- Work in an agile environment practicing CI/CD principles, including on-call duties.
+
+Basic Qualifications
+- Experience with at least one general-purpose programming language such as Java, Python, C++, C#, Go, Rust, or TypeScript
+- Experience with data structures, basic algorithm development, and/or object-oriented design principles
+- Bachelor's degree (or in progress) in Computer Science, Computer Engineering, Data Science, Information Systems, or related STEM fields
+- Must be 18 years of age or older
+
+Preferred Qualifications
+- Experience from technical internship(s) or demonstrated project experience
+- Experience with AI tools for development productivity, cloud platforms (preferably AWS), SQL/NoSQL databases, open-source contributions, version control systems
+- Demonstrated ability to learn new technologies quickly
+- Basic understanding of the software development lifecycle (SDLC)
+- Strong problem-solving and communication skills
