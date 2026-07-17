@@ -92,17 +92,37 @@ exact section headings. Different resumes may use different headings, e.g.
 Experience, Professional Experience, Work History, Employment, Internships —
 these may all contain relevant experience.
 
-Skills may appear in the skills section, work experience, internships, or projects.
+Skills can be stated two ways, and you must catch BOTH:
+1. Explicitly listed (e.g. a "Skills" section: "Python, SQL, React")
+2. Demonstrated implicitly through what the candidate describes doing —
+   read achievements, project bullets, and work experience descriptions
+   carefully and infer the underlying skill/concept being demonstrated.
+   Examples of this kind of inference:
+   - "Solved 1000+ DSA problems, LeetCode rating 1829" -> the candidate has
+     Data Structures and Algorithms skill, even though those exact words
+     may not appear as a labeled skill.
+   - "Built JWT-secured REST APIs" -> the candidate has REST API design
+     and JWT/authentication skills.
+   - "Optimized SQL queries for a payables report" -> the candidate has
+     SQL and database skills.
+   Do this for every achievement, project, and experience bullet, not only
+   the ones that happen to name a skill directly.
 
 Return ONLY valid JSON matching this schema:
 {schema}
 
 Important rules:
-1. Do not invent information.
+1. Do not invent information — every skill you extract must be traceable to
+   something actually stated or clearly demonstrated in the resume text.
 2. If a value is not available, return null.
 3. If a list has no information, return an empty list.
 4. Include internships inside experiences.
-5. Extract skills mentioned across the entire resume.
+5. Extract skills mentioned OR demonstrated across the entire resume,
+   including the Achievements/Certifications sections, not just a
+   dedicated Skills section.
+6. If total_experience_years is not explicitly stated, estimate it by
+   summing the durations of the work experience entries (using their dates)
+   rather than leaving it null when the dates are available.
 """
     user_prompt = f"Parse the following resume:\n{resume_text}"
 
@@ -121,10 +141,23 @@ against a job description.
 Return ONLY valid JSON matching this schema:
 {schema}
 
+Before listing a required or preferred skill as MISSING, double-check the
+candidate's full profile (skills, experiences, projects, certifications) for
+any mention or clear demonstration of that skill or a close equivalent —
+including skills demonstrated through project/achievement descriptions, not
+only skills that are explicitly named. Only mark a skill as missing if it is
+genuinely absent after this check. A skill wrongly marked as missing is worse
+than a skill wrongly marked as matching, so err on the side of re-checking.
+
+For experience_requirement_met: if total_experience_years is available, compare
+it directly against the job's minimum_experience. If total_experience_years is
+null but the candidate's experience entries have durations/dates, estimate
+total experience from those before concluding the requirement isn't met.
+
 Provide:
 1. candidate_name
 2. details.matching_skills
-3. details.missing_skills
+3. details.missing_skills (only after the verification check above)
 4. details.experience_requirement_met (true/false)
 5. score: overall match percentage from 0 to 100
 6. details.verdict: a short, concise final verdict
