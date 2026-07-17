@@ -3,10 +3,19 @@
 Reuses the same extraction.py / file_readers.py / schemas.py logic as the
 CLI (main.py) — this file is only a UI layer on top of the existing pipeline.
 """
+import os
 import tempfile
 from pathlib import Path
 
 import streamlit as st
+
+# Streamlit Cloud secrets (set in "Advanced settings") are only exposed via
+# st.secrets, not as real environment variables. config.py reads with
+# os.getenv(), so bridge them here BEFORE importing anything that pulls in
+# config.py. Locally (running via `.env` + python-dotenv) st.secrets will
+# just be empty and this loop does nothing.
+for key, value in st.secrets.items():
+    os.environ.setdefault(key, str(value))
 
 from extraction import ExtractionError, extract_job_description, parse_resume, score_candidate
 from file_readers import UnreadableFileError, read_resume
